@@ -1,0 +1,6 @@
+Look at this webcam frame. 
+Set person_visible to true only if a person is clearly visible. 
+In description, if a person is visible, factually describe their posture, gaze, 
+hands, and any objects they are clearly interacting with in one or two short sentences. 
+Do not guess thoughts, emotions, intentions, or anything off-camera. If no person is clearly 
+visible, set person_visible to false and leave description empty.

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Life Documentary</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><rect width='8' height='8' fill='%230d0917'/><rect x='2' y='0' width='4' height='1' fill='%23ffce63'/><rect x='1' y='1' width='6' height='1' fill='%23ffce63'/><rect x='0' y='2' width='8' height='5' fill='%23ffce63'/><rect x='0' y='7' width='3' height='1' fill='%23ffce63'/><rect x='4' y='7' width='2' height='1' fill='%23ffce63'/><rect x='7' y='7' width='1' height='1' fill='%23ffce63'/><rect x='3' y='3' width='2' height='2' fill='%230d0917'/></svg>" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="mascot" aria-hidden="true">
+          <svg viewBox="0 0 8 8" shape-rendering="crispEdges">
+            <rect class="ghost-body" x="2" y="0" width="4" height="1" />
+            <rect class="ghost-body" x="1" y="1" width="6" height="1" />
+            <rect class="ghost-body" x="0" y="2" width="8" height="5" />
+            <rect class="ghost-body" x="0" y="7" width="3" height="1" />
+            <rect class="ghost-body" x="4" y="7" width="2" height="1" />
+            <rect class="ghost-body" x="7" y="7" width="1" height="1" />
+            <rect class="ghost-eye" x="3" y="2" width="2" height="2" />
+          </svg>
+        </span>
+        <span class="brand-text">AI Life Documentary</span>
+      </div>
+      <div class="health" id="health" title="Backend and model status">
+        <span class="health-dot" id="healthDot"></span>
+        <span id="healthText">checking&hellip;</span>
+      </div>
+    </header>
+
+    <div class="error-banner" id="errorBanner" hidden></div>
+
+    <main class="stage side-right" id="stage">
+      <div class="frame" id="frame">
+        <video id="video" autoplay muted playsinline></video>
+        <div class="vignette"></div>
+        <div class="scanlines"></div>
+        <div class="grain"></div>
+
+        <div class="frame-corners" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </div>
+
+        <div class="status-badge" id="statusBadge" data-state="idle">
+          <span class="status-dot"></span>
+          <span id="statusText">IDLE</span>
+        </div>
+
+        <div class="frame-hint" id="frameHint">
+          <span class="hint-line">CAMERA OFF</span>
+          <span class="hint-line small">PRESS START</span>
+        </div>
+      </div>
+
+      <aside class="caption-dock" id="captionDock">
+        <div class="caption-box" id="captionBox">
+          <div class="caption-head"><span class="caption-dot"></span>Narrator</div>
+          <div class="caption" id="caption" aria-live="polite"></div>
+          <span class="caption-caret" aria-hidden="true"></span>
+        </div>
+      </aside>
+    </main>
+
+    <section class="panel">
+      <div class="row buttons">
+        <button id="startBtn" class="btn primary">Start</button>
+        <button id="pauseBtn" class="btn" disabled>Pause</button>
+        <button id="resumeBtn" class="btn" disabled>Resume</button>
+        <button id="stopBtn" class="btn danger" disabled>Stop</button>
+      </div>
+
+      <label class="field">
+        <span>Subject's situation <small class="field-hint">the work you're ignoring &mdash; fuels the joke</small></span>
+        <input type="text" id="context" placeholder="e.g. three assignments due, still scrolling" />
+      </label>
+
+      <div class="grid">
+        <label class="field">
+          <span>Observation interval <output id="intervalOut">5s</output></span>
+          <input type="range" id="interval" min="3" max="12" step="1" value="5" />
+        </label>
+
+        <label class="field">
+          <span>Narration frequency</span>
+          <select id="frequency">
+            <option value="sparse">Sparse &mdash; rare, weighty</option>
+            <option value="balanced" selected>Balanced</option>
+            <option value="chatty">Chatty</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Caption side</span>
+          <select id="captionSide">
+            <option value="right" selected>Right of frame</option>
+            <option value="left">Left of frame</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Narrator voice <small class="engine-tag" id="voiceEngine"></small></span>
+          <select id="voice"></select>
+        </label>
+
+        <label class="field check">
+          <input type="checkbox" id="ttsToggle" />
+          <span>Spoken narration</span>
+        </label>
+
+        <label class="field check">
+          <input type="checkbox" id="historyToggle" />
+          <span>Show caption history</span>
+        </label>
+
+        <button id="clearBtn" class="btn subtle">Clear history</button>
+      </div>
+
+      <div class="notes" id="notes" hidden>
+        <div class="notes-title">Observer notes</div>
+        <div class="notes-body" id="notesBody">No observations yet.</div>
+      </div>
+
+      <div class="history" id="history" hidden>
+        <div class="history-title">Caption history</div>
+        <ol class="history-list" id="historyList"></ol>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
