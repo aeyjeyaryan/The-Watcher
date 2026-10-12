@@ -104,21 +104,9 @@ python -m uvicorn backend.main:app --host 127.0.0.1 --port 8765
 The first time you press **Start**, the browser asks for camera access. Allow
 it. The preview is mirrored so it feels natural.
 
-## Recording a Reel
+## Related Reel
 
-1. `./run.sh`
-2. Open <http://127.0.0.1:8765>.
-3. Wait for the status badge to say **LIVE** (top of the frame).
-4. Position your laptop so the 9:16 frame shows you naturally.
-5. Press **Start**. Sit and behave badly-but-visibly (drink water, scroll,
-   stare at the IDE).
-6. In OBS, add a **Window Capture** of the browser (or a **Display Capture**)
-   and record a vertical canvas. The caption sits in the side gutter, so the
-   clean 9:16 frame stays free of text — capture the whole window, not just
-   the frame.
-7. Press **Pause**/**Resume** to control when it narrates; **Stop** ends the
-   session.
-8. Edit the best captions into your Reel.
+Link: https://www.instagram.com/reel/DeRyC1dukun/
 
 The narration appears as a pixel dialogue box docked beside the frame; use the
 **Caption side** control to flip it left or right to suit your crop. Captions
